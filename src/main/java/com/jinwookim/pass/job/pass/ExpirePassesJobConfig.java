@@ -59,7 +59,7 @@ public class ExpirePassesJobConfig {
         return new JpaCursorItemReaderBuilder<PassEntity>()
                 .name("expirePassesItemReader")
                 .entityManagerFactory(entityManagerFactory)
-                .queryString("select p from PassEntity where p.status = :status and p.endedAt <= :endedAt")
+                .queryString("select p from PassEntity p where p.status = :status and p.endedAt <= :endedAt")
                 .parameterValues(Map.of("status", PassStatus.IN_PROGRESS,"endedAt", LocalDateTime.now()))
                 .build();
 
